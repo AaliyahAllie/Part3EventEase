@@ -1,8 +1,48 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "EventEase";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero text-center text-white d-flex align-items-center justify-content-center">
+    <div>
+        <img src="~/images/EventEase Logo.png" alt="EventEase Logo" class="logo mb-3" />
+
+        <h1 class="display-4 fw-bold">EVENTEASE</h1>
+        <p class="lead">Event Booking with Zero Stress</p>
+        <p>Professional booking for all your events, parties or weddings, made easy.</p>
+
+        <div class="mt-4">
+            <a class="btn btn-light btn-lg me-2" asp-controller="Account" asp-action="Login">Sign In</a>
+            <a class="btn btn-outline-light btn-lg" asp-controller="Account" asp-action="Register">Create Account</a>
+        </div>
+    </div>
 </div>
+
+<section class="features container text-center mt-5">
+    <h2 class="mb-4 fw-bold">Why Choose EventEase?</h2>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card feature-card p-4">
+                <img src="~/images/venue-icon.png" class="feature-icon mb-3" alt="Venue Icon" />
+                <h4>Venues</h4>
+                <p>Browse and manage exceptional spaces. Each venue includes photos, capacity details, and location info.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card feature-card p-4">
+                <img src="~/images/event-icon.png" class="feature-icon mb-3" alt="Event Icon" />
+                <h4>Events</h4>
+                <p>Plan and schedule with confidence. Assign venues, set dates, and track every detail with ease.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card feature-card p-4">
+                <img src="~/images/booking-icon.png" class="feature-icon mb-3" alt="Booking Icon" />
+                <h4>Bookings</h4>
+                <p>Simplify reservations. Keep all bookings organized in real time for a smooth experience.</p>
+            </div>
+        </div>
+    </div>
+</section>

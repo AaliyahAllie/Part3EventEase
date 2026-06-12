@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2 class="mb-4">Admin Dashboard</h2>
+
+<div class="row g-4">
+    <div class="col-md-3">
+        <div class="card stat-card p-3">
+            <p>Total Venues</p>
+            <h2>@ViewBag.TotalVenues</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card stat-card p-3">
+            <p>Total Bookings</p>
+            <h2>@ViewBag.TotalBookings</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card stat-card p-3">
+            <p>Pending Bookings</p>
+            <h2>@ViewBag.PendingBookings</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card stat-card p-3">
+            <p>Total Events</p>
+            <h2>@ViewBag.TotalEvents</h2>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mt-3">
+    <div class="col-md-6">
+        <div class="card app-card p-4">
+            <h5>Booking Status</h5>
+            <canvas id="bookingChart"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card app-card p-4">
+            <h5>Event Status</h5>
+            <canvas id="eventChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    new Chart(document.getElementById("bookingChart"), {
+        type: "doughnut",
+        data: {
+            labels: ["Approved", "Pending", "Denied"],
+            datasets: [{
+                data: [@ViewBag.ApprovedBookings, @ViewBag.PendingBookings, @ViewBag.DeniedBookings]
+            }]
+        }
+    });
+
+    new Chart(document.getElementById("eventChart"), {
+        type: "bar",
+        data: {
+            labels: ["Approved", "Pending", "Denied"],
+            datasets: [{
+                label: "Events",
+                data: [@ViewBag.ApprovedEvents, @ViewBag.PendingEvents, @ViewBag.DeniedEvents]
+            }]
+        }
+    });
+</script>

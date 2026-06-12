@@ -1,0 +1,52 @@
+@model EventEasePart3.Models.Venue
+
+@{
+    ViewData["Title"] = "Add Venue";
+}
+
+<div class="card app-card p-4">
+    <h2 class="mb-4">Add Venue</h2>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label class="form-label">Venue Name</label>
+            <input asp-for="VenueName" class="form-control" />
+            <span asp-validation-for="VenueName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Location</label>
+            <input asp-for="Location" class="form-control" />
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Capacity</label>
+            <input asp-for="Capacity" type="number" class="form-control" />
+            <span asp-validation-for="Capacity" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Venue Image</label>
+            <input type="file" name="imageFile" class="form-control" />
+        </div>
+
+        <div class="mb-3 form-check form-switch">
+            <input asp-for="IsAvailable" type="checkbox" class="form-check-input" id="IsAvailable" checked />
+            <label class="form-check-label" for="IsAvailable">Available for Booking</label>
+        </div>
+
+        <button class="btn btn-success">Save Venue</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

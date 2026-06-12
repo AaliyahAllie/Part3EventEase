@@ -1,0 +1,121 @@
+@model IEnumerable<EventEasePart3.Models.Venue>
+
+@{
+    ViewData["Title"] = "Venues";
+    var role = Context.Session.GetString("UserRole");
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2>Venues</h2>
+        <p class="text-muted">Total venues: @ViewBag.VenueCount</p>
+    </div>
+
+    @if (role == "Admin")
+    {
+        <a asp-action="Create" class="btn btn-success">Add Venue</a>
+    }
+</div>
+
+<form method="get" class="mb-4">
+    <!-- Search Panel -->
+    <div class="card app-card p-3 mb-3">
+        <h5 class="card-title text-primary mb-3">🔍 Search Venues</h5>
+        <div class="row g-3 align-items-end">
+            <div class="col-md-9">
+                <label class="form-label">Search Keyword</label>
+                <input name="search" value="@ViewBag.Search" class="form-control" placeholder="Search by name..." />
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filtering Panel -->
+    <div class="card app-card p-3">
+        <h5 class="card-title text-success mb-3">⚡ Filtering Options</h5>
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label">Location</label>
+                <input name="location" value="@ViewBag.Location" class="form-control" placeholder="Filter by location..." />
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Min Capacity</label>
+                <input name="minCapacity" value="@ViewBag.MinCapacity" type="number" class="form-control" placeholder="Min capacity..." />
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Available From</label>
+                <input type="date" name="startDate" value="@ViewBag.StartDate" class="form-control" />
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Available To</label>
+                <input type="date" name="endDate" value="@ViewBag.EndDate" class="form-control" />
+            </div>
+
+            <div class="col-md-10 d-flex align-items-center">
+                <div class="form-check form-switch mt-2">
+                    <input name="availableOnly" type="checkbox" class="form-check-input" id="availOnly" value="true" checked="@(ViewBag.AvailableOnly == true ? "checked" : null)" />
+                    <label class="form-check-label" for="availOnly">Show only active/available venues</label>
+                </div>
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-success w-100">Filter</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="row g-4">
+    @foreach (var venue in Model)
+    {
+        <div class="col-md-4">
+            <div class="card app-card venue-card h-100">
+                <img src="@(string.IsNullOrEmpty(venue.ImageUrl) ? "/images/placeholder.jpg" : venue.ImageUrl)"
+                     class="card-img-top venue-image"
+                     alt="@venue.VenueName" />
+
+                <div class="card-body">
+                    <h5 class="card-title">@venue.VenueName</h5>
+                    <p class="card-text text-muted">📍 @venue.Location</p>
+                    <p class="card-text">
+                        Capacity: @venue.Capacity
+                        <span class="badge @(venue.IsAvailable ? "bg-success" : "bg-secondary") ms-2">
+                            @(venue.IsAvailable ? "Available" : "Unavailable")
+                        </span>
+                    </p>
+
+                    @if (role == "Admin")
+                    {
+                        <a asp-action="Edit" asp-route-id="@venue.VenueId" class="btn btn-primary btn-sm">Edit</a>
+
+                        <form asp-action="Delete" asp-route-id="@venue.VenueId" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <button class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Are you sure you want to delete this venue?')">
+                                Delete
+                            </button>
+                        </form>
+                    }
+                    else if (role == "Customer")
+                    {
+                        if (venue.IsAvailable)
+                        {
+                            <a asp-controller="Booking" asp-action="Create" asp-route-id="@venue.VenueId" class="btn btn-primary">
+                                Book This Venue
+                            </a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-secondary" disabled>Unavailable</button>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

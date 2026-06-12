@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card app-card p-4">
+            <h2 class="text-center mb-3">Create Account</h2>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">@ViewBag.Error</div>
+            }
+
+            <form method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input name="name" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input name="email" type="email" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input name="password" type="password" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Account Type</label>
+                    <select name="roleId" class="form-control" asp-items="ViewBag.Roles"></select>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">Create Account</button>
+            </form>
+
+            <p class="text-center mt-3">
+                Already have an account?
+                <a asp-action="Login">Login</a>
+            </p>
+        </div>
+    </div>
+</div>

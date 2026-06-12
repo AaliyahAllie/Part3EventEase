@@ -1,0 +1,47 @@
+@model IEnumerable<Part3EventEase.Models.Booking>
+
+@{
+    ViewData["Title"] = "My Bookings";
+}
+
+<h2 class="mb-4">My Bookings</h2>
+
+<div class="card app-card p-3">
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Venue</th>
+                <th>Date</th>
+                <th>Booking Status</th>
+                <th>Event Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var booking in Model)
+            {
+                <tr>
+                    <td>@booking.Venue?.VenueName</td>
+                    <td>@booking.BookingDate.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <span class="badge @(booking.Status == "Approved" ? "bg-success" : booking.Status == "Denied" ? "bg-danger" : "bg-warning text-dark")">
+                            @booking.Status
+                        </span>
+                    </td>
+                    <td>
+                        @if (booking.Event != null)
+                        {
+                            <span class="badge @(booking.Event.Status == "Approved" ? "bg-success" : booking.Event.Status == "Denied" ? "bg-danger" : "bg-info")">
+                                @booking.Event.Status
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Waiting for booking approval</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
