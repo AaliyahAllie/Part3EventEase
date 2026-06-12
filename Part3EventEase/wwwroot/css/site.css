@@ -1,22 +1,102 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    background: #f4f6f9;
+    color: #212529;
+}
+
+.app-navbar {
+    background: linear-gradient(90deg, #1f3c88, #4e73df);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.app-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.hero {
+    min-height: 88vh;
+    background: linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.62)), url('/images/hero-bg.jpg') no-repeat center center/cover;
+    padding: 20px;
+    border-radius: 0 0 30px 30px;
+}
+
+.logo {
+    width: 130px;
+    height: auto;
+}
+
+.hero h1 {
+    letter-spacing: 4px;
+}
+
+.feature-card {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    height: 100%;
+}
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+
+.feature-icon {
+    width: 65px;
+    height: 65px;
+    margin: auto;
+    object-fit: contain;
+}
+
+.stat-card {
+    border: none;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+    .stat-card p {
+        margin: 0;
+        color: #6c757d;
+    }
+
+    .stat-card h2 {
+        font-weight: 700;
+        color: #1f3c88;
+    }
+
+.venue-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .venue-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+.venue-image {
+    height: 220px;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+}
+
+.btn {
+    border-radius: 10px;
+}
+
+.btn-primary {
+    background-color: #1f3c88;
+    border-color: #1f3c88;
+}
+
+    .btn-primary:hover {
+        background-color: #172d66;
+        border-color: #172d66;
+    }
+
+.navbar-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
 }
