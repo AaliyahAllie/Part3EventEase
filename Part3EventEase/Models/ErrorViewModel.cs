@@ -7,3 +7,4 @@ namespace Part3EventEase.Models
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }
+
