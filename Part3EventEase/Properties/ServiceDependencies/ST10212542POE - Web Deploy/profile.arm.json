@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "ST10212542",
+      "defaultValue": "ST10212542POE",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
