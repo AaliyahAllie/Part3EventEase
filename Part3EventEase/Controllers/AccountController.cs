@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Part3EventEase.Data;
+using Part3EventEase.Models;
 
-namespace Part3EventEase.Controllers
+namespace EventEasePart3.Controllers
 {
     public class AccountController : Controller
     {
